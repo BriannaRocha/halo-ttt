@@ -18,13 +18,13 @@ let board, turn, winner, tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll('.sqr')
 const messageEl = document.querySelector('#message')
-
+const resetBtn = document.getElementById('reset-button')
 
 /*----------------------------- Event Listeners -----------------------------*/
 squareEls.forEach(function(squareEl) {
   squareEl.addEventListener('click', handleClick)
 })
-
+resetBtn.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -249,7 +249,7 @@ function updateMessage() {
   //// 6.4a) Create a function called `switchPlayerTurn`.
 
   //// 6.4b) If `winner` is true, return out of the function - we don’t need 
-  //       to switch the turn anymore!
+  ////       to switch the turn anymore!
 
   //// 6.4c) If `winner` is false, change the turn by multiplying `turn` by 
   ////       `-1` (this flips a `1` to `-1`, and vice-versa).
@@ -265,12 +265,12 @@ function updateMessage() {
   ////       render that updated state to the user by calling the `render` 
   ////       function that we wrote earlier.
 
-// Step 7 - Create Reset functionality
+//// Step 7 - Create Reset functionality
 
-  // 7a) Add a reset button to the HTML document.
+  //// 7a) Add a reset button to the HTML document.
 
-  // 7b) Store the new reset button element as a cached element reference in
-  //     a constant named `resetBtnEl`.
+  //// 7b) Store the new reset button element as a cached element reference in
+  ////     a constant named `resetBtnEl`.
 
-  // 7c) Attach an event listener to the `resetBtnEl`. On the `'click'` event 
-  //     it should call the `init` function you created in step 3.
+  //// 7c) Attach an event listener to the `resetBtnEl`. On the `'click'` event 
+  ////     it should call the `init` function you created in step 3.
