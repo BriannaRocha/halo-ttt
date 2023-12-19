@@ -20,8 +20,8 @@ wortSound.volume = 0.5
 cortanaSound.volume = 0.5
 waaghSound.volume = 0.5
 birthdaySound.volume = 0.5
-overSound.volume = 0.3
-haloSound.volume = 0.3
+overSound.volume = 0.2
+haloSound.volume = 0.1
 
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie
@@ -53,6 +53,7 @@ function init() {
   checkForWinner()
   haloSound.play()
 }
+// wanted haloSound to play when refreshed, but needs user interaction first
 
 function handleClick(evt) {
   const sqIdx = parseInt(evt.target.id.replace('sq', ''))
@@ -102,21 +103,20 @@ function checkForTie() {
 }
 
 function updateBoard() {
-  board.forEach(function(boardVal, idx){
+  board.forEach(function(boardVal, idx) {
     if (boardVal === 1) {
       // squareEls[idx].textContent = 'X'
-      squareEls[idx].style.backgroundImage = "url(assets/images/MasterChiefInfinite.webp)"; 
+      squareEls[idx].style.backgroundImage = "url(assets/images/MasterChiefInfinite.webp)" 
       squareEls[idx].classList.add('animate__animated', 'animate__bounceIn')
     }
     if (boardVal === -1) {
       // squareEls[idx].textContent = 'O'
-      squareEls[idx].style.backgroundImage = "url(assets/images/elite.png)"; 
+      squareEls[idx].style.backgroundImage = "url(assets/images/elite.png)"
       squareEls[idx].classList.add('animate__animated', 'animate__bounceIn')
     }
     if (boardVal === null) {
       // squareEls[idx].textContent = ' '
       squareEls[idx].style.backgroundImage = "none"
-      //haloSound.play()
     }
   })
 }
