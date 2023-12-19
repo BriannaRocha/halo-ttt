@@ -71,8 +71,8 @@ function checkForWinner() {
   winningCombos.forEach(combo => {
     if (Math.abs(board[combo [0]] + board[combo [1]] + board[combo [2]]) === 3) { 
       winner = true
-      setTimeout(()=>{birthdaySound.play()}, 750)
-      confetti.start(2000)
+      setTimeout(()=>{birthdaySound.play()}, 300)
+      confetti.start(3000)
     }
   })
 }
