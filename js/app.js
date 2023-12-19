@@ -35,6 +35,7 @@ function init() {
   winner = false
   tie = false
   render()
+  checkForWinner()
 }
 
 function handleClick(evt) {
@@ -42,6 +43,17 @@ function handleClick(evt) {
   if (board[sqIdx] || winner) {
     // add in buzzer noise
     return
+  }
+  placePiece(sqIdx)
+  checkForWinner()
+  checkForTie()
+  switchPlayerTurn()
+  render()
+}
+
+function switchPlayerTurn() {
+  if (!winner) {
+    turn *= -1
   }
 }
 
@@ -185,9 +197,9 @@ function updateMessage() {
   ////     index from an `id` assigned to the target element in the HTML. Assign 
   ////     this to a constant called `sqIdx`.
 
-  // 6d) If the `board` has a value at the `sqIdx`, immediately `return`  
-  //     because that square is already taken. Also, if `winner` is `true`
-  //     immediately `return` because the game is over.
+  //// 6d) If the `board` has a value at the `sqIdx`, immediately `return`  
+  ////     because that square is already taken. Also, if `winner` is `true`
+  ////     immediately `return` because the game is over.
 
 
 //// Step 6.1 - `placePiece`
@@ -232,26 +244,26 @@ function updateMessage() {
   ////       `winner` to true.
 
 
-// 6.4 - `switchPlayerTurn`
+//// 6.4 - `switchPlayerTurn`
 
-  // 6.4a) Create a function called `switchPlayerTurn`.
+  //// 6.4a) Create a function called `switchPlayerTurn`.
 
-  // 6.4b) If `winner` is true, return out of the function - we don’t need 
+  //// 6.4b) If `winner` is true, return out of the function - we don’t need 
   //       to switch the turn anymore!
 
-  // 6.4c) If `winner` is false, change the turn by multiplying `turn` by 
-  //       `-1` (this flips a `1` to `-1`, and vice-versa).
+  //// 6.4c) If `winner` is false, change the turn by multiplying `turn` by 
+  ////       `-1` (this flips a `1` to `-1`, and vice-versa).
 
 
-// 6.5 - Tying it all together
+//// 6.5 - Tying it all together
 
-  // 6.5a) In our `handleClick` function, call `placePiece`, `checkForTie`, 
-  //       `checkForWinner`, and `switchPlayerTurn`. Don’t forget that 
-  //       `placePiece` needs `sqIdx` as an argument! 
+  //// 6.5a) In our `handleClick` function, call `placePiece`, `checkForTie`, 
+  ////       `checkForWinner`, and `switchPlayerTurn`. Don’t forget that 
+  ////       `placePiece` needs `sqIdx` as an argument! 
 
-  // 6.5b) Finally, now that all the state has been updated we need to 
-  //       render that updated state to the user by calling the `render` 
-  //       function that we wrote earlier.
+  //// 6.5b) Finally, now that all the state has been updated we need to 
+  ////       render that updated state to the user by calling the `render` 
+  ////       function that we wrote earlier.
 
 // Step 7 - Create Reset functionality
 
