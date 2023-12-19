@@ -80,13 +80,16 @@ function checkForTie() {
 function updateBoard() {
   board.forEach(function(boardVal, idx){
     if (boardVal === 1) {
-      squareEls[idx].textContent = 'X'
+      // squareEls[idx].textContent = 'X'
+      squareEls[idx].style.backgroundImage = "url(images/MasterChiefInfinite.webp)"; 
     }
     if (boardVal === -1) {
-      squareEls[idx].textContent = 'O'
+      // squareEls[idx].textContent = 'O'
+      squareEls[idx].style.backgroundImage = "url(images/Grunt.webp)"; 
     }
     if (boardVal === null) {
       squareEls[idx].textContent = ' '
+      squareEls[idx].style.backgroundImage = "none"
     }
   })
 }
