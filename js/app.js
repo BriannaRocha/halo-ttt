@@ -15,11 +15,13 @@ const cortanaSound = new Audio('../assets/audio/cortana.mp3')
 const waaghSound = new Audio('../assets/audio/waagh.mp3')
 const birthdaySound = new Audio('../assets/audio/birthday.mp3')
 const overSound = new Audio('../assets/audio/over.mp3')
+const haloSound = new Audio ('../assets/audio/halo.mp3')
 wortSound.volume = 0.5
 cortanaSound.volume = 0.5
 waaghSound.volume = 0.5
 birthdaySound.volume = 0.5
 overSound.volume = 0.3
+haloSound.volume = 0.3
 
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie
@@ -44,8 +46,12 @@ function init() {
   turn = 1
   winner = false
   tie = false
+  squareEls.forEach(squareEl => {
+    squareEl.classList.remove('animate__animated', 'animate__bounceIn')
+  })
   render()
   checkForWinner()
+  haloSound.play()
 }
 
 function handleClick(evt) {
@@ -100,14 +106,17 @@ function updateBoard() {
     if (boardVal === 1) {
       // squareEls[idx].textContent = 'X'
       squareEls[idx].style.backgroundImage = "url(assets/images/MasterChiefInfinite.webp)"; 
+      squareEls[idx].classList.add('animate__animated', 'animate__bounceIn')
     }
     if (boardVal === -1) {
       // squareEls[idx].textContent = 'O'
       squareEls[idx].style.backgroundImage = "url(assets/images/elite.png)"; 
+      squareEls[idx].classList.add('animate__animated', 'animate__bounceIn')
     }
     if (boardVal === null) {
       // squareEls[idx].textContent = ' '
       squareEls[idx].style.backgroundImage = "none"
+      //haloSound.play()
     }
   })
 }
