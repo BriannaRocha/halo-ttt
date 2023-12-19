@@ -10,6 +10,16 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
+const wortSound = new Audio('../assets/audio/wort.mp3')
+const cortanaSound = new Audio('../assets/audio/cortana.mp3')
+const waaghSound = new Audio('../assets/audio/waagh.mp3')
+const birthdaySound = new Audio('../assets/audio/birthday.mp3')
+const overSound = new Audio('../assets/audio/over.mp3')
+wortSound.volume = 0.5
+cortanaSound.volume = 0.5
+waaghSound.volume = 0.5
+birthdaySound.volume = 0.5
+overSound.volume = 0.3
 
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie
@@ -41,7 +51,7 @@ function init() {
 function handleClick(evt) {
   const sqIdx = parseInt(evt.target.id.replace('sq', ''))
   if (board[sqIdx] || winner) {
-    // add in buzzer noise
+    waaghSound.play()
     return
   }
   placePiece(sqIdx)
@@ -61,12 +71,18 @@ function checkForWinner() {
   winningCombos.forEach(combo => {
     if (Math.abs(board[combo [0]] + board[combo [1]] + board[combo [2]]) === 3) { 
       winner = true
+      birthdaySound.play()
     }
   })
 }
 
 function placePiece(index) {
   board[index] = turn
+  if (turn === 1) {
+    cortanaSound.play()
+  } else {
+    wortSound.play()
+  }
 }
 
 function checkForTie() {
@@ -74,6 +90,7 @@ function checkForTie() {
     return
   } else {
     tie = true
+    overSound.play()
   }
 }
 
@@ -81,14 +98,14 @@ function updateBoard() {
   board.forEach(function(boardVal, idx){
     if (boardVal === 1) {
       // squareEls[idx].textContent = 'X'
-      squareEls[idx].style.backgroundImage = "url(images/MasterChiefInfinite.webp)"; 
+      squareEls[idx].style.backgroundImage = "url(assets/images/MasterChiefInfinite.webp)"; 
     }
     if (boardVal === -1) {
       // squareEls[idx].textContent = 'O'
-      squareEls[idx].style.backgroundImage = "url(images/Grunt.webp)"; 
+      squareEls[idx].style.backgroundImage = "url(assets/images/elite.png)"; 
     }
     if (boardVal === null) {
-      squareEls[idx].textContent = ' '
+      // squareEls[idx].textContent = ' '
       squareEls[idx].style.backgroundImage = "none"
     }
   })
@@ -101,14 +118,14 @@ function render() {
 
 function updateMessage() {
   if (!winner && !tie){
-    messageEl.textContent = `It's ${turn === 1 ? 'Master Chief' : 'Grunt'}'s turn!`
+    messageEl.textContent = `It's ${turn === 1 ? 'Master Chief' : 'Elite'}'s turn!`
   } else if (!winner && tie) {
     messageEl.textContent = "It's a draw! Wort wort!"
   } else {
-    messageEl.textContent = `${turn === 1 ? 'Master Chief' : 'Grunt'} wins!`
+    messageEl.textContent = `${turn === 1 ? 'Master Chief' : 'Elite'} wins!`
   }
 }
-// Master Chief = 'X' , Grunt = 'O'
+// Master Chief = 'X' , Elite = 'O'
 
 
 
