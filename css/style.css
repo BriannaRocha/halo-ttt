@@ -64,6 +64,10 @@ button {
   font-size: 24px;
   background-color: white;
   padding: 8px 12px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 button:hover {

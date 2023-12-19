@@ -72,7 +72,7 @@ function checkForWinner() {
     if (Math.abs(board[combo [0]] + board[combo [1]] + board[combo [2]]) === 3) { 
       winner = true
       setTimeout(()=>{birthdaySound.play()}, 750)
-      birthdaySound.play()
+      confetti.start(2000)
     }
   })
 }
@@ -92,7 +92,6 @@ function checkForTie() {
   } else {
     tie = true
     setTimeout(()=>{overSound.play()}, 750)
-    overSound.play()
   }
 }
 
