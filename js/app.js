@@ -1,17 +1,3 @@
-// 1) Define the required variables used to track the state of the game
-
-// 2) Store cached element references
-
-// 3) Upon loading, the game state should be initialized, and a function should be 
-//    called to render this game state
-
-// 4) The state of the game should be rendered to the user
-
-// 5) Define the required constants
-
-// 6) Handle a player clicking a square with a `handleClick` function
-
-// 7) Create Reset functionality
 /*-------------------------------- Constants --------------------------------*/
 const winningCombos = [
   [0, 1, 2],
@@ -24,6 +10,7 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
+
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie
 
@@ -32,8 +19,11 @@ let board, turn, winner, tie
 const squareEls = document.querySelectorAll('.sqr')
 const messageEl = document.querySelector('#message')
 
-/*----------------------------- Event Listeners -----------------------------*/
 
+/*----------------------------- Event Listeners -----------------------------*/
+squareEls.forEach(function(squareEl) {
+  squareEl.addEventListener('click', handleClick)
+})
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -46,6 +36,28 @@ function init() {
   tie = false
   render()
 }
+
+function handleClick(evt) {
+  const sqIdx = parseInt(evt.target.id.replace('sq', ''))
+  if (board[sqIdx] || winner) {
+    // add in buzzer noise
+    return
+  }
+}
+
+function placePiece(index) {
+  board[index] = turn
+}
+
+function checkForTie() {
+  if (board.includes(null)) {
+    return
+  } else {
+    tie = true
+  }
+}
+
+
 
 function updateBoard() {
   board.forEach(function(boardVal, idx){
@@ -152,40 +164,40 @@ function updateMessage() {
   ////     combinations as an array of arrays.
 
 
-// Step 6 - Handle a player clicking a square with a `handleClick` function
+//// Step 6 - Handle a player clicking a square with a `handleClick` function
 
-  // 6a) Create a function called `handleClick`. It will have an `evt`
-  //     parameter.
+  //// 6a) Create a function called `handleClick`. It will have an `evt`
+  ////     parameter.
 
-  // 6b) Attach an event listener to the game board (you can do this to each
-  //     one of the existing `squareEls` with a `forEach` loop OR add a new
-  //     cached element reference that will allow you to take advantage of 
-  //     event bubbling). On the `'click'` event, it should call the 
-  //    `handleClick` function you created in 6a.
+  //// 6b) Attach an event listener to the game board (you can do this to each
+  ////     one of the existing `squareEls` with a `forEach` loop OR add a new
+  ////     cached element reference that will allow you to take advantage of 
+  ////     event bubbling). On the `'click'` event, it should call the 
+  ////    `handleClick` function you created in 6a.
 
-  // 6c) Obtain the index of the square that was clicked by "extracting" the 
-  //     index from an `id` assigned to the target element in the HTML. Assign 
-  //     this to a constant called `sqIdx`.
+  //// 6c) Obtain the index of the square that was clicked by "extracting" the 
+  ////     index from an `id` assigned to the target element in the HTML. Assign 
+  ////     this to a constant called `sqIdx`.
 
   // 6d) If the `board` has a value at the `sqIdx`, immediately `return`  
   //     because that square is already taken. Also, if `winner` is `true`
   //     immediately `return` because the game is over.
 
 
-// Step 6.1 - `placePiece`
+//// Step 6.1 - `placePiece`
 
-  // 6.1a) Create a function named placePiece that accepts an `idx` parameter.
+  //// 6.1a) Create a function named placePiece that accepts an `idx` parameter.
 
-  // 6.1b) Update the `board` array at the `idx` so that it is equal to the 
-  //       current value of `turn`.
+  //// 6.1b) Update the `board` array at the `idx` so that it is equal to the 
+  ////       current value of `turn`.
 
 
-// 6.2 - `checkForTie`
+//// 6.2 - `checkForTie`
 
-  // 6.2a) Create a function named `checkForTie`.
+  //// 6.2a) Create a function named `checkForTie`.
 
-  // 6.2b) Check if the `board` array still contains any `null` elements. If
-  //       it does, we can leave `tie` as false. Otherwise, set `tie` to true.
+  //// 6.2b) Check if the `board` array still contains any `null` elements. If
+  ////       it does, we can leave `tie` as false. Otherwise, set `tie` to true.
 
 
 // 6.3 - `checkForWinner`
