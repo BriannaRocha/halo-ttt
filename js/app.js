@@ -10,12 +10,12 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
-const wortSound = new Audio('../assets/audio/wort.mp3')
-const cortanaSound = new Audio('../assets/audio/cortana.mp3')
-const waaghSound = new Audio('../assets/audio/waagh.mp3')
-const birthdaySound = new Audio('../assets/audio/birthday.mp3')
-const overSound = new Audio('../assets/audio/over.mp3')
-const haloSound = new Audio ('../assets/audio/halo.mp3')
+const wortSound = new Audio('/assets/audio/wort.mp3')
+const cortanaSound = new Audio('/assets/audio/cortana.mp3')
+const waaghSound = new Audio('/assets/audio/waagh.mp3')
+const birthdaySound = new Audio('/assets/audio/birthday.mp3')
+const overSound = new Audio('/assets/audio/over.mp3')
+const haloSound = new Audio ('/assets/audio/halo.mp3')
 wortSound.volume = 0.5
 cortanaSound.volume = 0.5
 waaghSound.volume = 0.5
